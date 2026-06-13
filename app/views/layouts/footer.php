@@ -25,6 +25,6 @@
     </script>
     
     <!-- Custom JS -->
-    <script src="<?php echo URLROOT; ?>/assets/js/main.js"></script>
+    <script src="<?php echo URLROOT; ?>/assets/js/main.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>
