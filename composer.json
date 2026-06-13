@@ -1,0 +1,15 @@
+{
+    "name": "kruping/system",
+    "description": "ระบบครูปิง - ระบบบริหารการศึกษาครบวงจร",
+    "type": "project",
+    "require": {
+        "php": "^8.0"
+    },
+    "autoload": {
+        "classmap": [
+            "app/core",
+            "app/controllers",
+            "app/models"
+        ]
+    }
+}
