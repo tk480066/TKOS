@@ -1,17 +1,3 @@
-// 0. Preloader Logic
-window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    if (preloader) {
-        // ให้เวลา animation แถบพลังงานรันให้สุดก่อน (หน่วงเวลาสักนิดเผื่อความสวยงาม)
-        setTimeout(() => {
-            preloader.classList.add('fade-out');
-            setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 800); // รอ CSS transition เสร็จ
-        }, 1500); // โชว์สัก 1.5 วินาที
-    }
-});
-
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Theme Toggle (Dark Mode)
     const themeToggleBtn = document.getElementById('themeToggle');

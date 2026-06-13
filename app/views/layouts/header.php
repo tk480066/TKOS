@@ -23,19 +23,6 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/style.css?v=<?php echo time(); ?>">
 </head>
 <body>
-    <!-- 🐕 Corgi Preloader -->
-    <div class="preloader-overlay" id="preloader">
-        <div class="corgi-loader-wrapper">
-            <!-- The Corgi -->
-            <div class="corgi-character">🐕</div>
-            <!-- The Energy Bar -->
-            <div class="energy-bar-container">
-                <div class="energy-bar-fill"></div>
-            </div>
-        </div>
-        <div class="loading-text text-gradient">LOADING...</div>
-    </div>
-
     <!-- Navbar (Glassmorphism) -->
     <nav class="navbar navbar-expand-lg fixed-top glass-nav">
         <div class="container">
