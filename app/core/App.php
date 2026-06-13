@@ -14,14 +14,14 @@ class App {
         // ค้นหา Controller 
         if(isset($url[0])) {
             $controllerName = ucwords($url[0]) . 'Controller';
-            if(file_exists('../app/controllers/' . $controllerName . '.php')){
+            if(file_exists(__DIR__ . '/../controllers/' . $controllerName . '.php')){
                 $this->currentController = $controllerName;
                 unset($url[0]);
             }
         }
 
         // โหลด Controller
-        require_once '../app/controllers/'. $this->currentController . '.php';
+        require_once __DIR__ . '/../controllers/'. $this->currentController . '.php';
 
         // สร้าง Instance ของ Controller
         $this->currentController = new $this->currentController;
