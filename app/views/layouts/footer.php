@@ -14,6 +14,33 @@
         </div>
     </footer>
 
+    <!-- Floating Chatbot -->
+    <div class="chatbot-wrapper position-fixed bottom-0 end-0 p-4" style="z-index: 1050;">
+        <div id="chatWindow" class="card border-0 soft-shadow rounded-4 mb-3 d-none" style="width: 320px; overflow: hidden;">
+            <div class="card-header bg-primary gradient-bg text-white d-flex justify-content-between align-items-center p-3">
+                <span class="fw-bold"><i class="bi bi-robot me-2"></i> OS Assistant</span>
+                <button type="button" class="btn-close btn-close-white" id="closeChatBtn"></button>
+            </div>
+            <div class="card-body bg-body-tertiary" style="height: 300px; overflow-y: auto;">
+                <div class="d-flex mb-3">
+                    <div class="bg-primary-subtle text-dark p-2 rounded-3 small" style="max-width: 80%;">
+                        สวัสดีครับ! ผมคือ AI ประจำระบบครูปิง มีอะไรให้ผมช่วยแนะนำไหมครับ?
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-body p-2 border-0">
+                <div class="input-group">
+                    <input type="text" class="form-control border-0 bg-body-tertiary rounded-start-pill px-3" placeholder="พิมพ์คำถาม...">
+                    <button class="btn btn-primary rounded-end-pill px-3"><i class="bi bi-send-fill"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <button id="chatToggleBtn" class="btn btn-primary btn-lg rounded-circle shadow-lg d-flex align-items-center justify-content-center ms-auto hover-lift" style="width: 60px; height: 60px;">
+            <i class="bi bi-chat-dots-fill fs-3"></i>
+        </button>
+    </div>
+
     <!-- Bootstrap 5 Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- SweetAlert2 -->

@@ -1,10 +1,22 @@
+// Loader Logic
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        setTimeout(() => {
+            loader.classList.add('fade-out');
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500); // Wait for transition
+        }, 800); // Show loader for a minimum of 800ms
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Theme Toggle (Dark Mode)
     const themeToggleBtn = document.getElementById('themeToggle');
     const htmlElement = document.documentElement;
     const themeIcon = themeToggleBtn.querySelector('i');
 
-    // ตรวจสอบ Theme เดิมจาก LocalStorage
     const savedTheme = localStorage.getItem('theme') || 'light';
     htmlElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
@@ -20,17 +32,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateThemeIcon(theme) {
         if(theme === 'dark') {
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
+            themeIcon.classList.remove('bi-moon-stars-fill');
+            themeIcon.classList.add('bi-brightness-high-fill');
         } else {
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
+            themeIcon.classList.remove('bi-brightness-high-fill');
+            themeIcon.classList.add('bi-moon-stars-fill');
         }
     }
 
     // 2. Animated Counter
     const counters = document.querySelectorAll('.counter');
-    const speed = 200; // ค่าความเร็วในการนับ (ยิ่งน้อยยิ่งเร็ว)
+    const speed = 200;
 
     counters.forEach(counter => {
         const updateCount = () => {
@@ -40,36 +52,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (count < target) {
                 counter.innerText = Math.ceil(count + inc);
-                setTimeout(updateCount, 20); // ทำซ้ำทุก 20ms
+                setTimeout(updateCount, 20);
             } else {
                 counter.innerText = target;
             }
         };
 
-        // เริ่มนับเมื่อ Scroll มาถึง (ใช้ IntersectionObserver)
         const observer = new IntersectionObserver((entries) => {
             if(entries[0].isIntersecting) {
                 updateCount();
-                observer.disconnect(); // นับแค่ครั้งเดียว
+                observer.disconnect();
             }
         });
         observer.observe(counter);
     });
 
     // 3. Navbar Shrink on Scroll
-    const navbar = document.querySelector('.glass-nav');
+    const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
         if(window.scrollY > 50) {
             navbar.style.padding = '0.5rem 0';
-            navbar.style.boxShadow = 'var(--glass-shadow)';
+            navbar.classList.add('shadow');
+            navbar.classList.remove('shadow-sm');
         } else {
             navbar.style.padding = '1rem 0';
-            navbar.style.boxShadow = 'none';
+            navbar.classList.add('shadow-sm');
+            navbar.classList.remove('shadow');
         }
     });
+
+    // 4. Chatbot Toggle Logic
+    const chatToggleBtn = document.getElementById('chatToggleBtn');
+    const closeChatBtn = document.getElementById('closeChatBtn');
+    const chatWindow = document.getElementById('chatWindow');
+
+    if (chatToggleBtn && closeChatBtn && chatWindow) {
+        chatToggleBtn.addEventListener('click', () => {
+            chatWindow.classList.toggle('d-none');
+            // Animate icon change
+            const icon = chatToggleBtn.querySelector('i');
+            if(chatWindow.classList.contains('d-none')) {
+                icon.classList.remove('bi-x-lg');
+                icon.classList.add('bi-chat-dots-fill');
+            } else {
+                icon.classList.remove('bi-chat-dots-fill');
+                icon.classList.add('bi-x-lg');
+            }
+        });
+
+        closeChatBtn.addEventListener('click', () => {
+            chatWindow.classList.add('d-none');
+            const icon = chatToggleBtn.querySelector('i');
+            icon.classList.remove('bi-x-lg');
+            icon.classList.add('bi-chat-dots-fill');
+        });
+    }
 });
 
-// ฟังก์ชัน Utility สำหรับแสดง Toast Notification ด้วย SweetAlert2
 function showToast(icon, title) {
     const Toast = Swal.mixin({
         toast: true,
@@ -82,7 +121,7 @@ function showToast(icon, title) {
     });
 
     Toast.fire({
-        icon: icon, // 'success', 'error', 'warning', 'info'
+        icon: icon,
         title: title
     });
 }
